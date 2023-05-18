@@ -1,0 +1,50 @@
+/* .App {
+  text-align: center;
+} */
+
+.thead {
+  /* background-color: aliceblue; */
+  /* background-color: blue; */
+  color: beige;
+  font-size: large;
+}
+
+.tbody {
+  /* background-color: rgba(245, 245, 245, 0.642); */
+  color: beige;
+}
+
+#list {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+
+  /* width: 60%; */
+  height: 100%;
+  /* background: #AD1457; */
+
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  padding: 30px;
+  overflow: auto;
+  box-shadow: -2px -3px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  color: #fff;
+}
+
+#form {
+  /* display: flex; */
+  /* justify-content: center; */
+  align-items: center;
+  width: 50%;
+  padding: 35px 50px 0 50px;
+}
+
+.btn {
+  width: 100%;
+}
+
+.btn-primary {
+  background-image: linear-gradient(135deg, #667eea 0%, #9b66d1 100%);
+}
