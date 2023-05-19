@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const initialValue = {
   name: '',
@@ -13,7 +13,7 @@ const Editform = () => {
   const [user, setUser] = useState(initialValue)
   const { name, email, contact } = user
   const { id } = useParams()
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadUser()
@@ -21,16 +21,25 @@ const Editform = () => {
 
   const loadUser = async () => {
     await fetch(`http://localhost:5000/api/${id}`, { method: 'GET' })
-      .then((response) => response.json('Found User'))
+      .then((response) => response.json())
+      .then((result) => { setUser(result) })
       .catch((error) => console.log(error))
   }
 
   const editUser = async () => {
-    await fetch(`http://localhost:5000/api/${id}`,id, user, { method: 'PUT' })
-      .then((response) => response.json('User edited successfully'))
+    await fetch(`http://localhost:5000/api/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((result) => { console.log(result) })
       .catch((error) => console.log(error))
 
-    navigate('/')
+    navigate("/")
+    navigate(0)
   }
 
   const onValueChange = (e) => {
@@ -67,7 +76,7 @@ const Editform = () => {
         </div>
         <br />
         <button type="submit" class="btn btn-primary"
-          onClick={() => editUser()}
+          onClick={editUser}
         >EDIT USER</button>
       </form>
     </div>
